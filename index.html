@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LUXURY Car Rental</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+
+  <header class="topbar">
+    <a class="logo" href="index.html">Luxury<span>Car</span>Rental</a>
+    <nav>
+      <a href="#cars">Cars</a>
+      <a href="#contact">Contact</a>
+      <a id="registerBtn" class="btn btn-small" href="register.html">Register</a>
+      <span id="welcome" class="welcome" hidden></span>
+      <button id="logoutBtn" class="btn btn-small btn-ghost" hidden>Log out</button>
+    </nav>
+  </header>
+
+
+  <section class="hero">
+    <h1>Rent a car along the Adriatic coast.</h1>
+    <p>Pick a car, choose your dates, and see the total price right away.</p>
+    <a class="btn" href="#cars">See available cars</a>
+  </section>
+
+  
+  <main id="cars" class="container">
+    <div class="filters">
+      <input id="search" type="text" placeholder="Search by brand or model…" />
+      <select id="type">
+        <option value="all">All types</option>
+        <option value="Economy">Economy</option>
+        <option value="Sedan">Sedan</option>
+        <option value="SUV">SUV</option>
+        <option value="Sport">Sport</option>
+      </select>
+      <select id="sort">
+        <option value="none">Sort by price</option>
+        <option value="low">Lowest first</option>
+        <option value="high">Highest first</option>
+      </select>
+    </div>
+
+    <div id="carGrid" class="grid"></div>
+    <p id="noResults" class="empty" hidden>No cars match your search. Try a different word.</p>
+  </main>
+
+ 
+  <footer id="contact" class="footer">
+    <p><strong>Luxury Car Rental</strong> · Durrës, Albania · +355 67 000 0000 · info@luxurycarrental.example</p>
+  </footer>
+
+  
+  <div id="modal" class="modal" hidden>
+    <div class="modal-box">
+      <button id="closeModal" class="close" aria-label="Close">✕</button>
+      <h2 id="modalTitle">Book car</h2>
+      <p id="modalPrice" class="muted"></p>
+
+      <label>Start date
+        <input id="startDate" type="date" />
+      </label>
+      <label>End date
+        <input id="endDate" type="date" />
+      </label>
+
+      <p id="total" class="total">Choose your dates to see the total.</p>
+      <p id="modalError" class="error" hidden></p>
+      <button id="confirmBtn" class="btn">Confirm booking</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
