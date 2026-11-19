@@ -67,3 +67,35 @@ grid.addEventListener("click", function (event) {
   if (!button) return;
   openBooking(Number(button.dataset.id));
 });
+function openBooking(id) {
+ 
+  if (!localStorage.getItem("user")) {
+    window.location.href = "register.html";
+    return;
+  }
+
+  selectedCar = cars.find((car) => car.id === id);
+  modalTitle.textContent = "Book " + selectedCar.brand + " " + selectedCar.model;
+  modalPrice.textContent = "€" + selectedCar.price + " per day";
+  startInput.value = "";
+  endInput.value = "";
+  startInput.min = today();
+  endInput.min = today();
+  totalText.textContent = "Choose your dates to see the total.";
+  modalError.hidden = true;
+  modal.hidden = false;
+}
+
+function closeBooking() {
+  modal.hidden = true;
+}
+
+function today() {
+  return new Date().toISOString().split("T")[0]; 
+}
+
+function countDays() {
+  if (!startInput.value || !endInput.value) return 0;
+  const ms = new Date(endInput.value) - new Date(startInput.value);
+  return Math.round(ms / (1000 * 60 * 60 * 24));
+}
