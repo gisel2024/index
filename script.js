@@ -99,3 +99,73 @@ function countDays() {
   const ms = new Date(endInput.value) - new Date(startInput.value);
   return Math.round(ms / (1000 * 60 * 60 * 24));
 }
+
+function updateTotal() {
+  const days = countDays();
+  if (days > 0) {
+    totalText.textContent = days + " day(s) × €" + selectedCar.price + " = €" + days * selectedCar.price;
+  } else {
+    totalText.textContent = "Choose your dates to see the total.";
+  }
+}
+
+startInput.addEventListener("change", updateTotal);
+endInput.addEventListener("change", updateTotal);
+
+document.getElementById("confirmBtn").addEventListener("click", function () {
+  if (!startInput.value || !endInput.value) {
+    return showModalError("Pick a start and an end date.");
+  }
+  if (countDays() <= 0) {
+    return showModalError("The end date must be after the start date.");
+  }
+  const days = countDays();
+  closeBooking();
+  showToast(selectedCar.brand + " " + selectedCar.model + " booked for " + days + " day(s). Total: €" + days * selectedCar.price);
+});
+
+function showModalError(message) {
+  modalError.textContent = message;
+  modalError.hidden = false;
+}
+
+document.getElementById("closeModal").addEventListener("click", closeBooking);
+modal.addEventListener("click", function (event) {
+  if (event.target === modal) closeBooking(); 
+});
+
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.hidden = false;
+  setTimeout(function () { toast.hidden = true; }, 4000);
+}
+
+// butoni register
+function updateHeader() {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const registerBtn = document.getElementById("registerBtn");
+  const welcome = document.getElementById("welcome");
+  const logoutBtn = document.getElementById("logoutBtn");
+
+  if (user) {
+    registerBtn.hidden = true;
+    welcome.hidden = false;
+    welcome.textContent = "Hi, " + user.name;
+    logoutBtn.hidden = false;
+  } else {
+    registerBtn.hidden = false;
+    welcome.hidden = true;
+    logoutBtn.hidden = true;
+  }
+}
+
+document.getElementById("logoutBtn").addEventListener("click", function () {
+  localStorage.removeItem("user");
+  updateHeader();
+  showToast("You are logged out.");
+});
+
+
+updateHeader();
+showCars();
