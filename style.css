@@ -1,0 +1,112 @@
+:root {
+  --deep: #0a2540;
+  --sea: #0b6e99;
+  --light: #eef4f8;
+  --sun: #ffc233;
+  --text: #1c2b3a;
+  --muted: #5d7083;
+  --line: #d6e2ea;
+  --error: #c0392b;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  color: var(--text);
+  background: var(--light);
+  line-height: 1.5;
+}
+
+[hidden] { display: none !important; }
+a { color: inherit; }
+
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 6vw; background: var(--deep); color: #fff;
+  position: sticky; top: 0; z-index: 10;
+}
+.logo { font-size: 1.3rem; font-weight: 700; text-decoration: none; }
+.logo span { color: var(--sun); }
+.topbar nav { display: flex; align-items: center; gap: 20px; }
+.topbar nav a { text-decoration: none; }
+.topbar nav a:hover { color: var(--sun); }
+.welcome { color: var(--sun); }
+
+
+.btn {
+  display: inline-block; border: 0; cursor: pointer;
+  background: var(--sun); color: var(--deep);
+  padding: 11px 22px; border-radius: 8px;
+  font-size: 1rem; font-weight: 600; text-decoration: none;
+}
+.btn:hover { filter: brightness(0.93); }
+.btn-small { padding: 7px 14px; font-size: 0.9rem; }
+.btn-ghost { background: transparent; color: #fff; border: 1px solid #ffffff66; }
+.topbar nav a.btn:hover { color: var(--deep); }
+
+.hero {
+  background: linear-gradient(rgba(10,37,64,.78), rgba(10,37,64,.78)),
+    url("https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1400&q=80") center / cover;
+  color: #fff; padding: 90px 6vw; text-align: center;
+}
+.hero h1 { font-size: clamp(1.9rem, 5vw, 3.2rem); max-width: 700px; margin: 0 auto 14px; line-height: 1.15; }
+.hero p { margin-bottom: 26px; font-size: 1.1rem; }
+
+
+.container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+
+.filters { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 26px; }
+.filters input { flex: 1 1 240px; }
+input, select {
+  padding: 11px 12px; border: 1px solid var(--line); border-radius: 8px;
+  font-size: 1rem; background: #fff; color: var(--text); width: 100%;
+}
+.filters select { width: auto; }
+input:focus, select:focus, button:focus-visible, a:focus-visible {
+  outline: 3px solid var(--sea); outline-offset: 1px;
+}
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 22px; }
+.card { background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); }
+.card img { width: 100%; height: 170px; object-fit: cover; display: block; background: var(--line); }
+.card-body { padding: 16px; }
+.card h3 { font-size: 1.15rem; }
+.price { font-size: 1.5rem; font-weight: 700; color: var(--sea); margin: 8px 0 14px; }
+.price span { font-size: 0.9rem; font-weight: 400; color: var(--muted); }
+.muted { color: var(--muted); font-size: 0.95rem; }
+.empty { text-align: center; padding: 40px 0; color: var(--muted); }
+
+.footer { background: var(--deep); color: #cfe0ee; text-align: center; padding: 26px 20px; font-size: 0.95rem; }
+
+.modal {
+  position: fixed; inset: 0; background: rgba(10,37,64,.6);
+  display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 20;
+}
+.modal-box { background: #fff; border-radius: 12px; padding: 28px; width: 100%; max-width: 400px; position: relative; }
+.modal-box h2 { margin-bottom: 4px; }
+.close { position: absolute; top: 12px; right: 14px; background: none; border: 0; font-size: 1.2rem; cursor: pointer; color: var(--muted); }
+label { display: block; margin-top: 16px; font-weight: 600; font-size: 0.95rem; }
+label input { margin-top: 6px; font-weight: 400; }
+.total { margin: 20px 0 14px; font-weight: 600; color: var(--sea); }
+.error { color: var(--error); margin-bottom: 12px; font-size: 0.95rem; }
+.modal-box .btn, .auth-box .btn { width: 100%; }
+
+
+.auth-wrap { display: flex; justify-content: center; padding: 50px 20px; }
+.auth-box { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 32px; width: 100%; max-width: 420px; }
+.auth-box h1 { font-size: 1.6rem; margin-bottom: 4px; }
+.auth-box .btn { margin-top: 8px; }
+
+
+.toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+  background: var(--deep); color: #fff; padding: 14px 22px; border-radius: 8px;
+  max-width: 90vw; z-index: 30; border-left: 5px solid var(--sun);
+}
+
+@media (max-width: 520px) {
+  .topbar { flex-direction: column; gap: 10px; }
+  .hero { padding: 60px 6vw; }
+}
